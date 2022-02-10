@@ -104,19 +104,7 @@ arrOfObj.forEach(element => {
 
             // write own reduce method
 
-            // const trytoReduce =(arr,acc)=>{
-                    
-            //     for(let i=0;i<arr.length;i++)
-            //     {
-
-            //          acc= acc + arr[i];
-                      
-            //     }
-            //     return acc;
-            // }
-            // trytoReduce([2,3,5,7,18],0);
-
-
+            
             const myReduce =(arr,func,initialValue)=>{
                 if(arr.length===0 && initialValue===undefined)
                 {
@@ -184,8 +172,183 @@ arrOfObj.forEach(element => {
            //const input=["apple","orange","mango","papaya"];
             //output={5:3,6:2};
 
-            const input=["apple","orange","mango","papaya"];
-            const findLengthOfstring = ()
+            const InputObject ={length5:0,length6:0}
+            const input=["apple","orange","mango","papaya","banana","kw","ryt","rltb"];
+            const findLengthOfstring = (InputObject,str)=>str.length===5?{...InputObject,length5:InputObject.length5 + 1}:{...InputObject,length6:InputObject.length6 +1};
+            input.reduce(findLengthOfstring,InputObject)
+
+            //return an array with strings which have vowels.
+             let vowels1=["a","e","i","o","u"];
+             const findvowelsStr =(arr,index)=> vowels.includes(arr[index]);               
+             input.filter(findvowelsStr);
 
             
-        
+            //return an array of objects with key as item and value as number of character in string.
+            const findlengthOfInputstr = (str,index)=>({[`item ${index +1}`]: str.length})
+            input.map(findlengthOfInputstr,0)
+
+            // akansha's question
+
+            // Given an array. Write a function to change all even numbers in an array to odd numbers by adding 1 to it.
+     
+            const arr = [1, 2, 3, 58, 5, 6, 24, 8, 15, 4];
+            const makeEvenToOdd = (arr)=> arr %2===0? arr+1:arr;
+            arr.map(makeEvenToOdd); //[1, 3, 3, 59, 5, 7, 25, 9, 15, 5]
+
+            // Get the names in an array for only those who have a cycle.
+                        const family = [
+            {
+                name    : 'Tanay',
+                haveCycle : true
+            },
+            {
+                name     : 'Akanksha',
+                haveCycle : false
+            },
+            {
+                name     : 'Tanvi',
+                haveCycle : true
+            },
+                {
+                name     : 'Kanak',
+                haveCycle : false
+            }
+            ];
+
+
+       const haveCycle =(acc,arr)=>arr.haveCycle ? [...acc,arr.name]:[...acc];
+       family.reduce(haveCycle,[]); //[tanay,tanvi]
+ 
+       //1. Given an array. ****Write a function that takes in the given array and prints only the numbers which are less than 8 and also an even number.
+
+  const findlessthan8andEven =(arr)=> (arr%2===0 && arr<=8) 
+  arr.filter(findlessthan8andEven); //[2,6,8,4]
+
+  //Given an array. Write a function that takes in the given array and prints only the words which are more than 5 characters in length.
+
+  const arrInput = ["eat", "sleep", "repeat", "code"];
+  const morethan6Char =(arr)=> arr.length >5;
+  arrInput.filter(morethan6Char); //[repeat]
+
+  //1. Given an array. Write a function to get the sum of all elements which are greater than 50.
+
+ const arr2=[1, 2, 3, 58, 5, 6, 62, 8, 70];
+   const sumOfElements= (acc,arr)=> arr > 50? arr+acc: acc;
+   arr2.reduce(sumOfElements,0); // 190
+
+   //Given an array. Write a function to find the product of all elements which are even.
+   const arr3 = [1, 2, 3, 7, 5, 6, 8, 9];
+   const productOfEven =(acc,arr)=> arr %2 ===0 ? arr * acc :acc;
+   arr3.reduce(productOfEven); //96
+
+   // 1. Given an array of objects. Write a function to find the sum of ages of each person.
+   const arr4 = [
+	{
+		name: "Jay",
+		age: 60
+	},
+	{
+		name: "Gloria",
+		age: 36
+	},
+	{
+		name: "Manny",
+		age: 16
+	},
+	{
+		name: "Joe",
+		age: 9
+	}
+]
+
+const sumOfAge =(acc,arr)=> acc + arr.age  ;
+arr4.reduce(sumOfAge,0);   //121
+
+//Given an array. Convert it in to an object with key as the index of each element and value as the element itself.
+const arr5 = ["You", "all", "are", "rockstars"];
+const mapKeyValue =(arr,index)=>({[`${index}`]: arr});
+arr5.map(mapKeyValue)
+
+// Given an array of objects. If the name of an item is more than 5 characters in length, add type as ‘vegetable’. 
+// If the name of an item is less than or equal to 5 characters in length, add type as ‘fruit’. 
+            
+const arr6 = [
+	{
+		name: "Apple"
+	},
+	{
+		name: "Mango"
+	},
+	{
+		name: "Potato"
+	},
+	{
+		name: "Guava"
+	},
+	{
+		name: "Capsicum"
+	}
+]   
+
+const addtypeName =(arr)=>arr.name.length >5 ?{...arr,type:"vagetable"}:{...arr,type:"fruit"};
+arr6.map(addtypeName);
+
+//Question:
+// a. Get all the items in an array whose quantity is less than 2.
+// b. Get the total quantity of items present in the inventory.
+// c. Find the object which contains the item whose quantity is zero.
+
+const inventory = [
+    {name: 'fans', quantity: 3},
+    {name: 'chimneys', quantity: 0},
+    {name: 'bulbs', quantity: 5},
+    {name: 'stove', quantity: 1}    
+  ];
+
+  const Qtylessthan2 =(arr)=>arr.quantity< 2;
+  inventory.filter(Qtylessthan2);
+
+  // total quantity
+
+  const totalQty = (acc,arr)=> acc+ arr.quantity;
+  inventory.reduce(totalQty,0);  //9
+
+  // Find the object which contains the item whose quantity is zero.
+  const qtyzero =(arr)=>arr.quantity===0
+  inventory.filter(qtyzero)
+
+  // Your output should be: 
+// Violet-Indigo-Blue-Green-Yellow-Orange-Red
+
+const arr = ["Violet", "Indigo", "Blue", "Green", "Yellow", "Orange", "Red"]
+
+const arrwithHyphen = ()=>arr.join("-");
+console.log(arrwithHyphen());
+
+//1. Write a function that accepts a number as input and inserts hyphens between every two even numbers.
+const input = "24345687";
+const addHyphen =(num,index)=>index %2===0 ? num + ("-") : num;  // remaining
+input.map(addHyphen);
+
+//Write a function that takes in a string and converts all the characters to uppercase. (Hint: toUpperCase())
+
+const converUppercase =(str)=>str.toUpperCase(); 
+console.log(converUppercase("neogrammer"));
+
+// Write a function that takes in a string and converts only the vowels to uppercase and 
+// all other characters to lowercase.
+
+// Flatten an array without using flat().
+
+const input = [
+    ['a', 'b', 'c'],
+    ['c', 'd', 'e'],
+    ['e', 'd', 'f'],
+  ];
+
+const flattenarray =(acc,arr)=>[...acc, ...arr];
+input.reduce(flattenarray);
+
+//Your output should be: {a: 1, b: 1, c: 2, d: 2, e: 2, f: 1}
+
+const 
