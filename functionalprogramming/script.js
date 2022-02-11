@@ -179,9 +179,28 @@ arrOfObj.forEach(element => {
 
             //return an array with strings which have vowels.
               
-            let regEx =/^[aeiou]$/i;
-            const findvowelsStr =(acc,arr)=>[...acc,arr.contains(regEx)];               
-            input.reduce(findvowelsStr,[]);
+            
+            const findingVowelsString =(arr)=>{
+                let vowels =['a','i','e','o','u'];
+                let emptyArry=[];
+                arr.forEach(element=>{
+                    for(let i=0; i< element.length;i++)
+                    {
+                        if(element.includes(vowels[i]))
+                        {
+                            let alementinArr =emptyArry.push([element]);
+                            return alementinArr;
+                        }
+                        else{
+                            return 1;
+                        }
+                    }
+                   console.log(alementinArr);
+                    
+                })
+                     
+            }
+            console.log(findingVowelsString(input))
 
             
             //return an array of objects with key as item and value as number of character in string.
@@ -335,6 +354,24 @@ let regex = /([02468])([02468])/g;
 const addHyphen =(str)=> str.replace(regex, '$1-$2');// remaining
 console.log(addHyphen(input));
 
+// another way of doing it
+
+const addingHyphen =(num)=>{
+    num= num.toString();
+    const SplitNum =num.split('');
+    const arrMap = SplitNum.map((item,index,arr)=>{
+        if(item %2===0 && arr[index +1] %2 ===0)
+        {
+            return (item=item + "-");
+        }
+        else{
+            return item;
+        }
+    });
+    return arrMap.join('');
+};
+console.log(addingHyphen(24345687));
+
 //Write a function that takes in a string and converts all the characters to uppercase. (Hint: toUpperCase())
 
 const converUppercase =(str)=>str.toUpperCase(); 
@@ -343,8 +380,6 @@ console.log(converUppercase("neogrammer"));
 // Write a function that takes in a string and converts only the vowels to uppercase and 
 // all other characters to lowercase.
 
-  let regEx = /[aeiou][aeiou]/;
-  const StrupperCase = regEx.exec("neog").toUpperCase();
   
 
 // Flatten an array without using flat().
