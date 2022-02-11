@@ -178,9 +178,10 @@ arrOfObj.forEach(element => {
             input.reduce(findLengthOfstring,InputObject)
 
             //return an array with strings which have vowels.
-             let vowels1=["a","e","i","o","u"];
-             const findvowelsStr =(arr,index)=> vowels.includes(arr[index]);               
-             input.filter(findvowelsStr);
+              
+            let regEx =/^[aeiou]$/i;
+            const findvowelsStr =(acc,arr)=>[...acc,arr.contains(regEx)];               
+            input.reduce(findvowelsStr,[]);
 
             
             //return an array of objects with key as item and value as number of character in string.
@@ -266,8 +267,11 @@ arr4.reduce(sumOfAge,0);   //121
 
 //Given an array. Convert it in to an object with key as the index of each element and value as the element itself.
 const arr5 = ["You", "all", "are", "rockstars"];
-const mapKeyValue =(arr,index)=>({[`${index}`]: arr});
-arr5.map(mapKeyValue)
+// const mapKeyValue =(arr,index)=>({[`${index}`]: arr});
+// arr5.map(mapKeyValue)
+
+const  reduceObject =(acc,arr,index)=>({...acc,[` ${index +1}`]:arr});
+arr5.reduce(reduceObject,{});
 
 // Given an array of objects. If the name of an item is more than 5 characters in length, add type as ‘vegetable’. 
 // If the name of an item is less than or equal to 5 characters in length, add type as ‘fruit’. 
@@ -327,8 +331,9 @@ console.log(arrwithHyphen());
 
 //1. Write a function that accepts a number as input and inserts hyphens between every two even numbers.
 const input = "24345687";
-const addHyphen =(num,index)=>index %2===0 ? num + ("-") : num;  // remaining
-input.map(addHyphen);
+let regex = /([02468])([02468])/g;
+const addHyphen =(str)=> str.replace(regex, '$1-$2');// remaining
+console.log(addHyphen(input));
 
 //Write a function that takes in a string and converts all the characters to uppercase. (Hint: toUpperCase())
 
@@ -337,6 +342,10 @@ console.log(converUppercase("neogrammer"));
 
 // Write a function that takes in a string and converts only the vowels to uppercase and 
 // all other characters to lowercase.
+
+  let regEx = /[aeiou][aeiou]/;
+  const StrupperCase = regEx.exec("neog").toUpperCase();
+  
 
 // Flatten an array without using flat().
 
@@ -347,8 +356,18 @@ const input = [
   ];
 
 const flattenarray =(acc,arr)=>[...acc, ...arr];
-input.reduce(flattenarray);
+const arrayflatten=input.reduce(flattenarray,[]);
 
 //Your output should be: {a: 1, b: 1, c: 2, d: 2, e: 2, f: 1}
-
-const 
+const reduceFlattenarray =(acc,curr)=>{
+    // let numOfocc =0;
+    if(acc[curr])
+    {
+        acc[curr]=acc[curr]+1;
+        return {...acc,[curr]:acc[curr]}
+    }
+    else{
+       return {...acc,[curr]:1}
+    }
+} 
+console.log(arrayflatten.reduce(reduceFlattenarray,{}));
