@@ -406,3 +406,57 @@ const reduceFlattenarray =(acc,curr)=>{
     }
 } 
 console.log(arrayflatten.reduce(reduceFlattenarray,{}));
+
+//currying
+ //create a function which takes your name and return a function which would add your name to anything that function
+
+ const mariyasays =name=> msg=>`${name} says ${msg}`;
+ const mariyaLogger = mariyasays("mariya");
+ mariyaLogger("hello");
+// two parameter
+ const mariyasays =(name,a)=> msg=>`${name}  has ${a}says ${msg}`;
+ const mariyaLogger = mariyasays("mariya",20);
+ mariyaLogger("hello");
+
+ //curring
+ add(2)(3)
+ const add= a=>b=>a+b;
+ const add2= add(3);
+   console.log(add2(2)); 
+
+   const multiply= a=>b=>(`a is ${a} and b is ${b},${a*b}`);
+   const multi=multiply(6);
+   console.log(multi(7))
+   console.log(multiply(8)(9))
+
+ // write a function which can log any text with your name,another function which can write any text with your userId
+// now compare both functions to give one fumction which can log any text with bothe userid and usertext
+ const NameLogger =(msg)=>(`Mariya: ${msg}`);
+ const UserIdText =msg=>(`12345: ${msg}`);
+ console.log(UserIdText(NameLogger("hello")));
+
+ // trying composition
+
+ const add =(a)=>a+2;
+ const multiply=(a)=> a*2;
+ const subtract=(a,)=>a-2;
+ const power=num=> num**2;
+
+ console.log(subtract(power(multiply(add(3)))))
+
+ //write function compose() which take any number of function and return a function which will run 
+//  the given function in order when called a parameter with an argument
+
+const inc = num=> num+1;
+const double = num=>num*2;
+const square = num=> num* num;
+
+const Increthensquarethendouble =(...fns)=>num =>fns.reduce((acc,fn)=>fn(acc), num);
+const  returnFunction =Increthensquarethendouble(num);
+console.log(Increthensquarethendouble(inc,square,double)(2))
+// console.log(Increthensquarethendouble(double(square(inc(2)))))
+
+ 
+
+ 
+ 
