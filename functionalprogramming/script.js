@@ -178,29 +178,23 @@ arrOfObj.forEach(element => {
             input.reduce(findLengthOfstring,InputObject)
 
             //return an array with strings which have vowels.
-              
+            //   let regEx=/\b[aeiou]+\b/i;
+            //   let RegEX=/^[aeiou]$/i;
+            //   let resultedSTR =(arr)=>RegEX.match(arr);
+            //   input.filter(resultedSTR);
             
-            const findingVowelsString =(arr)=>{
-                let vowels =['a','i','e','o','u'];
-                let emptyArry=[];
-                arr.forEach(element=>{
-                    for(let i=0; i< element.length;i++)
+            const vowels="aeiou";
+            const findstringwithvowels= arr=> {
+                for(let i=0;i<arr.length;i++)
+                {
+                    const ele=arr[i];
+                    if(vowels.includes(ele))
                     {
-                        if(element.includes(vowels[i]))
-                        {
-                            let alementinArr =emptyArry.push([element]);
-                            return alementinArr;
-                        }
-                        else{
-                            return 1;
-                        }
+                        return true;
                     }
-                   console.log(alementinArr);
-                    
-                })
-                     
+                }
             }
-            console.log(findingVowelsString(input))
+            console.log(input.filter(findstringwithvowels));
 
             
             //return an array of objects with key as item and value as number of character in string.
@@ -379,7 +373,24 @@ console.log(converUppercase("neogrammer"));
 
 // Write a function that takes in a string and converts only the vowels to uppercase and 
 // all other characters to lowercase.
-
+let str="neog";
+const vowels="aeiou";
+            const convertstringvowelsuppercase= str=> {                
+               let character =str.split('');
+               character.filter(arr =>{
+                   for(let i=0;i<arr.length;i++)
+                   {
+                     let elementofarr=arr[i];   
+                    if(vowels.includes(elementofarr))
+                    {
+                        let toconvertInuppercase = elementofarr.toUpperCase();
+                        return true;
+                    }
+                   }
+               })
+               
+            }
+            console.log(convertstringvowelsuppercase(str));
   
 
 // Flatten an array without using flat().
@@ -451,8 +462,8 @@ const inc = num=> num+1;
 const double = num=>num*2;
 const square = num=> num* num;
 
-const Increthensquarethendouble =(...fns)=>num =>fns.reduce((acc,fn)=>fn(acc), num);
-const  returnFunction =Increthensquarethendouble(num);
+const Increthensquarethendouble =(...fns)=>num =>fns.reduce((acc,currfn)=>currfn(acc),num);
+// const  returnFunction =Increthensquarethendouble(num);
 console.log(Increthensquarethendouble(inc,square,double)(2))
 // console.log(Increthensquarethendouble(double(square(inc(2)))))
 
