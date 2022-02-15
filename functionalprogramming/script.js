@@ -376,18 +376,11 @@ console.log(converUppercase("neogrammer"));
 let str="neog";
 const vowels="aeiou";
             const convertstringvowelsuppercase= str=> {                
-               let character =str.split('');
-               character.filter(arr =>{
-                   for(let i=0;i<arr.length;i++)
-                   {
-                     let elementofarr=arr[i];   
-                    if(vowels.includes(elementofarr))
-                    {
-                        let toconvertInuppercase = elementofarr.toUpperCase();
-                        return true;
-                    }
-                   }
-               })
+               let character =str.split('');               
+               if(/[aeiuo]/.test(character))
+               {
+                   character= character.toUpperCase();
+               }
                
             }
             console.log(convertstringvowelsuppercase(str));
